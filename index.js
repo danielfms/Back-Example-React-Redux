@@ -10,9 +10,12 @@ io.on("connection", function(socket){
     console.log("a user connected");
     //Message from react-redux
     socket.on("message", function(msg){
+        console.log("message from ", socket.id);
         console.log(msg);
         //Send Message that dispatch action setName
-        socket.emit("message", "Pepito Perez");
+        if(msg.type != "NO_EMIT"){
+            socket.emit("message", "Pepito Perez");
+        }
     });
 });
 
