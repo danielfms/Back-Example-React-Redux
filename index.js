@@ -13,10 +13,14 @@ io.on("connection", function(socket){
         console.log("message from ", socket.id);
         console.log(msg);
         //Send Message that dispatch action setName
-        if(msg.type != "NO_EMIT"){
             socket.emit("message", "Pepito Perez");
-        }
     });
+
+    socket.on("message_callback", function(msg, cb){
+        console.log("message from ", socket.id);
+        console.log(msg);
+        cb("funciono !!");
+    })
 });
 
 http.listen(3000, function(){
